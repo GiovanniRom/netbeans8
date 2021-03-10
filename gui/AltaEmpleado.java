@@ -6,9 +6,11 @@
 package mx.unam.aragon.fes.gui;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import mx.unam.aragon.fes.Direccion;
 import mx.unam.aragon.fes.Empleado;
+import mx.unam.aragon.fes.persistencia.ArchivoEmpleado;
 
 
 
@@ -301,6 +303,11 @@ private ArrayList<Empleado> lista;
         jTabbedPane1.addTab("Empresariales", jPanel2);
 
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Cargar");
 
@@ -406,6 +413,15 @@ private ArrayList<Empleado> lista;
         limpiarFormulario();
         jButton6.setEnabled(false);
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        ArchivoEmpleado perisitencia = new ArchivoEmpleado();
+        JFileChooser jfc = new JFileChooser();
+        jfc.showSaveDialog(this);
+        String archivo = jfc.getSelectedFile().getAbsolutePath();
+        System.out.println("ruta seleccionada es:"+ archivo);
+    }//GEN-LAST:event_jButton1MouseClicked
 
      
     private void limpiarFormulario(){
