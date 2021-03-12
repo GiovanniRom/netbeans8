@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import mx.unam.aragon.fes.Direccion;
 import mx.unam.aragon.fes.Empleado;
 import mx.unam.aragon.fes.persistencia.ArchivoEmpleado;
+;
 
 
 
@@ -409,6 +410,7 @@ private ArrayList<Empleado> lista;
         }else{
             JOptionPane.showMessageDialog(this, "No se guardo el empleado!");
         }
+        
         System.out.println("Empleados en el arreglo="+lista.size());
         limpiarFormulario();
         jButton6.setEnabled(false);
@@ -416,11 +418,18 @@ private ArrayList<Empleado> lista;
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        ArchivoEmpleado perisitencia = new ArchivoEmpleado();
+        ArchivoEmpleado persistencia = new ArchivoEmpleado();
         JFileChooser jfc = new JFileChooser();
         jfc.showSaveDialog(this);
         String archivo = jfc.getSelectedFile().getAbsolutePath();
         System.out.println("ruta seleccionada es:"+ archivo);
+        persistencia.setArchivo(archivo);
+        try {
+            persistencia.guardarEmpleados(lista);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
      
